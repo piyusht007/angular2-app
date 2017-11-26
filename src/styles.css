@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+body {
+    font-family: 'Permanent Marker', cursive;
+}
+
+app-root {
+    display: block;
+    width: 960px;
+    margin: 0 auto;
+}
+
+
+.my-centered-dialog {
+  max-width: 60vw;
+}
+
+.my-centered-dialog .mat-dialog-container {
+    max-width: 400px;
+}

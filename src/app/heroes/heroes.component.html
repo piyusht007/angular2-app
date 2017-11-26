@@ -1,0 +1,93 @@
+<div class="container">
+  <div>
+    <div class="myHeroesHeader">
+      <h2>My Heroes</h2>
+      <a class="refresh" (click)="resetHeroes()">
+        <i class="fa fa-retweet fa-lg" aria-hidden="true"></i>
+      </a>
+    </div>
+    <ul class="heroes">
+      <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
+        <span class="hero-initials" [class.selected]="hero === selectedHero">
+          <span class="badge" [class.dc]="hero.universe === 'DC'" [class.marvels]="hero.universe === 'Marvels'">{{hero.universe}}</span>
+          <span>{{hero.name}}</span>
+        </span>
+        <span>
+          <span *ngIf="!hero.isFighting">
+            <a (click)="addHeroToFight(hero)">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          </span>
+          <span *ngIf="hero.isFighting">
+            <a (click)="removeHeroFromFight(hero)">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="fights">
+      <nav>
+        <a (click)="selectWinner()">
+          <img matTooltip="Start a fight!" src="data:image/png;base64,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">
+        </a>
+      </nav>
+    </div>
+
+    <div *ngIf="isAnyHeroFighting" class="fightArena">
+      <span class="hero1">{{fightingHeroes[0] ? fightingHeroes[0].name : 'Hero1'}}</span>
+      <br/>
+      <span class="versus"> V/S </span>
+      <br/>
+      <span class="hero2">{{fightingHeroes[1] ? fightingHeroes[1].name : 'Hero2'}}</span>
+    </div>
+  </div>
+
+  <div>
+  <div >
+      <a class="leaderboard-link" routerLink="/fights">
+        Leaderboard
+      </a>
+    </div>
+
+    <div class="details" *ngIf="selectedHero">
+      <h2>{{ selectedHero.name | uppercase }} Details</h2>
+      <div>
+        <span>id: </span>{{selectedHero.id}}</div>
+      <div>
+        <label>name:
+          <input [(ngModel)]="selectedHero.name" placeholder="name">
+        </label>
+      </div>
+      <div>
+        <label>Universe:
+          <input [(ngModel)]="selectedHero.universe" placeholder="universe">
+        </label>
+      </div>
+      <label>
+        Wins:{{selectedHero.wins}}
+      </label>
+      <label>
+        Fights:{{selectedHero.fights}}
+      </label>
+    </div>
+
+    <div class="details">
+      <h2>Add new hero:</h2>
+      <label>name:
+        <input [(ngModel)]="newHero.name" placeholder="name">
+      </label>
+      <div>
+        <label>Universe:
+          <input [(ngModel)]="newHero.universe" placeholder="universe">
+        </label>
+      </div>
+      <div class="buttonContainer">
+        <button (click)="addNewHero()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+/* HeroesComponent's private CSS styles */
+.selected {
+    background-color: darkolivegreen !important;
+    color: white;
+  }
+
+  .myHeroesHeader {
+    display: flex;
+  }
+
+a {
+    color: grey;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:lightgrey; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+
+
+.dc {
+    background-color: blue !important;
+}
+
+.marvels {
+    background-color:red !important;
+}
+  .heroes {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    width: 15em;
+  }
+  .heroes .hero-initials {
+    display: inline-block;
+    width: 182px;
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin: .5em;
+    padding: .3em 0;
+    height: 1.6em;
+    border-radius: 4px;
+  }
+  .heroes .hero-initials.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+  }
+  .heroes .hero-initials:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+  }
+  .heroes .text {
+    position: relative;
+    top: -3px;
+  }
+  .heroes .badge {
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 0.8em 0.7em 0 0.7em;
+    background-color: #607D8B;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -4px;
+    height: 1.8em;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+  }
+  .container {
+      display: flex;
+  }
+
+  .leaderboard-link {
+    margin-left: 220px;
+    animation-direction: normal;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-name: colours;
+    animation-timing-function: ease;
+  }
+
+  @keyframes colours {
+	  0% {color: #39f;}
+	 15% {color: #8bc5d1;}
+	 30% {color: #f8cb4a;}
+	 45% {color: #95b850;}
+	 60% {color: #944893;}
+	 75% {color: #c71f00;}
+	 90% {color: #bdb280;}
+	100% {color: #39f;}
+}
+
+  .details {
+    margin-left: 220px;
+  }
+  
+  button {
+    background-color: #555555;
+    border: none;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    width: 100px;
+  }
+
+  .buttonContainer {
+    margin-top: 10px;
+  }
+
+  .fights {
+    margin-left: 170px;
+  }
+
+  .fightArena {
+    margin-top: 150px;
+    margin-left: 150px;
+    border: red solid;
+  }
+
+  .fightArena .hero1 {
+    margin-left: 30px;
+  }
+
+  .fightArena .hero2 {
+    margin-left: 30px;
+  }
+
+  .fightArena .versus {
+    margin-left: 60px;
+  }
+
+  .maxHeroError {
+    margin-left: 60px;
+  }
