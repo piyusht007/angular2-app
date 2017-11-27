@@ -10,6 +10,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogComponent } from './heroes/dialog/dialog.component';
+import { HeroService } from './services/hero.service';
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,12 @@ import { DialogComponent } from './heroes/dialog/dialog.component';
     AppRoutingModule,
     MatTooltipModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule 
   ],
-  providers: [],
+  providers: [HeroService],
   bootstrap: [AppComponent],
   entryComponents: [
     DialogComponent,

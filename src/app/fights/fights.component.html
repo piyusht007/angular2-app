@@ -1,6 +1,35 @@
 <div>
-    Choose 2 heroes:
-    <br/>
-    <br/>
-    <br/>
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <mat-table #table [dataSource]="dataSource">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let hero"> {{hero.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Universe Column -->
+        <ng-container matColumnDef="universe">
+            <mat-header-cell *matHeaderCellDef> Comic Universe </mat-header-cell>
+            <mat-cell *matCellDef="let hero"> {{hero.universe}} </mat-cell>
+        </ng-container>
+
+        <!-- Wins Column -->
+        <ng-container matColumnDef="wins">
+            <mat-header-cell *matHeaderCellDef> Wins </mat-header-cell>
+            <mat-cell *matCellDef="let hero"> {{hero.wins}} </mat-cell>
+        </ng-container>
+
+        <!-- Fights Column -->
+        <ng-container matColumnDef="fights">
+            <mat-header-cell *matHeaderCellDef> Fights </mat-header-cell>
+            <mat-cell *matCellDef="let hero"> {{hero.fights}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
 </div>

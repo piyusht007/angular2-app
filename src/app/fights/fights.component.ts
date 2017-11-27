@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
 import { HeroesComponent } from '../heroes/heroes.component';
 import { Hero } from '../hero';
+import { HeroService } from './../services/hero.service';
+import {MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'fights',
@@ -9,14 +10,18 @@ import { Hero } from '../hero';
   styleUrls: ['./fights.component.css']
 })
 export class FightsComponent implements OnInit {
-  displayedColumns = {};
-  dataSource = {};
+  displayedColumns = ['name', 'universe', 'wins', 'fights'];
+  dataSource = new MatTableDataSource<Hero>(this.heroService.getHeroes());
 
-
-  constructor(public heroComponent: HeroesComponent) { }
+  constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.displayedColumns = ['position', 'name', 'weight', 'symbol'];
-    this.dataSource = new MatTableDataSource<Hero>(this.heroComponent.heroes);
+    
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 }

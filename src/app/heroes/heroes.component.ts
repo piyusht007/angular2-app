@@ -4,6 +4,7 @@ import { HEROES } from '../mock-heroes';
 import * as _ from 'lodash';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from './dialog/dialog.component';
+import { HeroService } from '../services/hero.service';
 
 
 @Component({
@@ -13,16 +14,18 @@ import { DialogComponent } from './dialog/dialog.component';
 })
 export class HeroesComponent implements OnInit {
   originalHeroes = JSON.parse(JSON.stringify(HEROES));
-  heroes = HEROES;
+  heroes: Hero[];
   selectedHero: Hero;
   newHero: Hero = {};
   isAnyHeroFighting = false;
   fightingHeroes: Hero[] = [];
   maxHeroErrorMsg = 'Only 2 heroes can participate in a fight.';
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+  private heroService: HeroService) { }
 
   ngOnInit() {
+    this.heroes = this.heroService.getHeroes();
   }
 
   onSelect(hero: Hero): void {
@@ -33,6 +36,8 @@ export class HeroesComponent implements OnInit {
     if (this.newHero.name && this.newHero.universe) {
       var lastHeroId = this.heroes[this.heroes.length - 1].id;
       this.newHero.id = lastHeroId + 1;
+      this.newHero.wins = 0;
+      this.newHero.fights = 0;
 
       this.heroes.push(Object.assign({}, this.newHero));
       this.newHero = {};
