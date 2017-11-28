@@ -81,7 +81,7 @@ export class HeroesComponent implements OnInit {
     let dialogRef = this.dialog.open(DialogComponent, {
       panelClass: 'my-centered-dialog',
       width: '512px',
-      data: { errorMsg: this.maxHeroErrorMsg }
+      data: { message: this.maxHeroErrorMsg, isErrorMsg: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -109,7 +109,7 @@ export class HeroesComponent implements OnInit {
     let dialogRef = this.dialog.open(DialogComponent, {
       panelClass: 'my-centered-dialog',
       width: '512px',
-      data: { errorMsg: 'The winner is: ' + winnerFighter.name }
+      data: { message: 'The winner is: ' + winnerFighter.name, isErrorMsg: false }
     });
 
     dialogRef.afterClosed().subscribe(result => {

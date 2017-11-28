@@ -1,3 +1,5 @@
-<div md-dialog-content>
-    <p>{{data.errorMsg}}</p>
-</div>
+<span>
+    <mat-dialog-content>
+        <i *ngIf="data.isErrorMsg" class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>
+        <i *ngIf="!data.isErrorMsg" class="fa fa-shield fa-2x" aria-hidden="true"></i> {{data.message}}</mat-dialog-content>
+</span>
