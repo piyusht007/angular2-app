@@ -47,7 +47,15 @@
   </div>
 
   <div>
-  <div >
+    <div class="trend" *ngIf="trendingUniverse">
+      <span>
+        {{trendingUniverse}}
+        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+        {{trendingUniverse === 'DC' ? 'Marvels' : 'DC'}}
+        <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+      </span>
+    </div>
+    <div>
       <a class="leaderboard-link" routerLink="/fights">
         Leaderboard
       </a>

@@ -20,12 +20,16 @@ export class HeroesComponent implements OnInit {
   isAnyHeroFighting = false;
   fightingHeroes: Hero[] = [];
   maxHeroErrorMsg = 'Only 2 heroes can participate in a fight.';
+  trendingUniverse: string;
 
   constructor(public dialog: MatDialog,
-  private heroService: HeroService) { }
+    private heroService: HeroService) { }
 
   ngOnInit() {
     this.heroes = this.heroService.getHeroes();
+    this.isAnyHeroFighting = false;
+    this.fightingHeroes = [];
+    this.resetFighters();
   }
 
   onSelect(hero: Hero): void {
@@ -47,6 +51,12 @@ export class HeroesComponent implements OnInit {
   resetHeroes(): void {
     this.heroes = [];
     this.heroes = JSON.parse(JSON.stringify(this.originalHeroes));
+  }
+
+  resetFighters(): void {
+    _.forEach(this.heroes, function (e) {
+      e.isFighting = false;
+    });
   }
 
   addHeroToFight(hero: Hero): void {
@@ -104,6 +114,12 @@ export class HeroesComponent implements OnInit {
     winnerHero.fights += 1;
     winnerHero.wins += 1;
     loserHero.fights += 1;
+    this.calculateTrendingUniverse();
+
+    // Reset the fighters.
+    this.isAnyHeroFighting = false;
+    this.fightingHeroes = [];
+    this.resetFighters();
 
     // Open a dialog to show the winner.
     let dialogRef = this.dialog.open(DialogComponent, {
@@ -115,5 +131,26 @@ export class HeroesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The winner dialog was closed');
     });
+  }
+
+  calculateTrendingUniverse(): void {
+    let dcWins = 0;
+    let marvelsWins = 0;
+
+    // Calculate trending universe.
+    _.forEach(this.heroes, function (h) {
+      if (h.universe === 'DC') {
+        dcWins += h.wins;
+      } else {
+        marvelsWins += h.wins;
+      }
+    });
+
+    // Check which universe has more wins
+    if (dcWins > marvelsWins) {
+      this.trendingUniverse = 'DC';
+    } else {
+      this.trendingUniverse = 'Marvels';
+    }
   }
 }
